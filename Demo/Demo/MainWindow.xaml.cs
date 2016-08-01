@@ -22,6 +22,8 @@ namespace Demo
         public MainWindow()
         {
             InitializeComponent();
+            ////WPF rendering engine
+            //MainDxViewport.GraphicsProfiles = new Ab3d.DirectX.GraphicsProfile[] { Ab3d.DirectX.GraphicsProfile.Wpf3D };
         }
     }
 }

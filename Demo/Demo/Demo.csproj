@@ -100,7 +100,7 @@
     <Resource Include="floor_pattern_3d.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="wall_pattern.jpg" />
+    <Resource Include="wall_pattern.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
