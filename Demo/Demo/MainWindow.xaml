@@ -4,9 +4,90 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo"
+        xmlns:controls="clr-namespace:Ab3d.DirectX.Controls;assembly=Ab3d.DXEngine.Wpf"
+        xmlns:controls1="clr-namespace:Ab3d.Controls;assembly=Ab3d.PowerToys"
+        xmlns:cameras="clr-namespace:Ab3d.Cameras;assembly=Ab3d.PowerToys"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="477.826" Width="657.391">
+    <Grid Background="#FFE3F0EB" >
+        <controls:DXViewportView Name="MainDxViewport">
+            <Viewport3D HorizontalAlignment="Left" Height="438" VerticalAlignment="Top" Width="639" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5" >
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <!-- 通过AmbientLight和DirectionalLight的结合，我们可以让纹理更清晰同时不缺乏阴影效果 -->
+                             <AmbientLight Color="#555555"/>
+                            <!--<DirectionalLight Direction="0,0,-7"
+                                 Color="White"/>
+                            <DirectionalLight Direction="0,0,7"
+                                 Color="White"/>
+                            <DirectionalLight Direction="1,0,7"
+                                 Color="White"/>-->
+                            <GeometryModel3D>
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D Positions="-5,5,-5 5,5,-5 -5,-5,-5 5,-5,-5"
+                                                    
+                                        TriangleIndices="
+                                                    1 0 2
+                                                    1 2 3
+                                                    "
+                                        TextureCoordinates=" 
+                                                    1,1 -1,1 -1,-1
+                                                    1,1 -1,-1 1,-1
+                                                    "
+                                                    />
+                                </GeometryModel3D.Geometry>
+                                <GeometryModel3D.Material>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <ImageBrush ImageSource="Tree.jpg" Opacity = "0.5"/>
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </GeometryModel3D.Material>
+
+                            </GeometryModel3D>
+
+                            
+                            
+                            
+                            <GeometryModel3D>
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D Positions="-5,5,0 5,5,0 -5,-5,0 5,-5,0"
+                                                    
+                                        TriangleIndices="
+                                                    1 0 2
+                                                    1 2 3
+                                                    "
+                                        TextureCoordinates=" 
+                                                    1,1 -1,1 -1,-1
+                                                    1,1 -1,-1 1,-1
+                                                    "
+                                                    />
+                                </GeometryModel3D.Geometry>
+                                <GeometryModel3D.Material>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <ImageBrush ImageSource="wall_pattern.jpg" Opacity = "0.9"/>
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </GeometryModel3D.Material>
+                            </GeometryModel3D>
+
+                            
+                        </Model3DGroup>
+
+                    </ModelVisual3D.Content>
+
+                </ModelVisual3D>
+            </Viewport3D>
+        </controls:DXViewportView>
+        <cameras:TargetPositionCamera Name="Camera1" Grid.Row="2" Heading="30" Attitude="-20" Bank="0" Distance="20" TargetPosition="0 0 0"
+                                      ShowCameraLight="Always"
+                                      TargetViewport3D="{Binding ElementName=MainViewport}"/>
+
+        <!-- EventsSourceElement is set to MainGrid - this means that the MainGrid's mouse events are subscribed to - this enables camera rotation without the need to be over the rendered 3D element -->
+        <controls1:MouseCameraController Name="MouseCameraController1" Grid.Row="2" UsedMouseButton="Left" 
+                                    EventsSourceElement="{Binding ElementName=ViewportBorder}"
+                                    TargetCamera="{Binding ElementName=Camera1}"/>
     </Grid>
 </Window>
